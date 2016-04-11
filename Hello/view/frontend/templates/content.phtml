@@ -1,3 +1,30 @@
-<h4><?php echo __('This text is written in template file'); ?></h4>
-<br><br>
-<h4><?php echo __('Model Saved With Entity ID %1 and Title %2',$block->getTestModel()->getData('excellence_hello_test_id'),$block->getTestModel()->getData('title')); ?></h4>
+<h4><?php //echo __('Model Saved With Entity ID %1 and Title %2',$block->getTestModel()->getData('excellence_hello_test_id'),$block->getTestModel()->getData('title')); ?></h4>
+
+<?php $collectionData = $block->getTestModel(); //print_r($collection); ?>
+<br>
+<h1><?php echo __('Table'); ?></h1>
+<p></p>
+<h3><a href="<?php echo $block->getAddUrl(); ?>"><?php echo __('Add Item') ?></a></h3>
+<p></p>
+<table class="data table table-order-items history" id="my-orders-table">
+  <thead>
+   <tr>
+       <th><?php echo __('Id#'); ?></th>
+       <th><?php echo __('Title'); ?></th>
+       <th><?php echo __('Status'); ?></th>
+       <th><?php echo __('Edit'); ?></th>
+       <th><?php echo __('Delete'); ?></th>
+   </tr>
+  </thead>
+  <tbody>
+  	   <?php foreach ($collectionData as $item) : ?>
+	    <tr>
+	        <td> <?php echo $item['excellence_hello_test_id']; ?></td>
+	        <td> <?php echo $item['title']; ?></td>
+	        <td><?php if($item['is_active']==1){ echo __('Enabled');} else { echo __('Disabled');} ?></td>
+	        <td><a href="<?php echo $block->getEditUrl($item['excellence_hello_test_id']); ?>"><?php echo __('Edit') ?></a></td>
+	        <td><a href="<?php echo $block->getDeleteUrl($item['excellence_hello_test_id']); ?>"><?php echo __('Delete') ?></a></td>
+	    </tr>
+		<?php endforeach; ?>
+  </tbody>
+</table>

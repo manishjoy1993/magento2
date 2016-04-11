@@ -1,0 +1,58 @@
+<?php 
+$data = $block->getRowData();
+extract($data);
+if($is_active == 1)
+{
+    $op1_select="selected";
+    $op2_select="";
+}
+else{
+    $op1_select="";
+    $op2_select="selected";
+}
+?>
+
+<div class="block block-customer-login">
+    <div class="block-title">
+        <h2><?php echo __('Add Data'); ?></h2>
+    </div>
+    <div class="block-content" aria-labelledby="block-heading">
+        <form class="form"
+              action=""
+              method="post"
+              id="edit-form"
+              data-mage-init='{"validation":{}}'>
+            <fieldset class="fieldset" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+
+                <div class="field id required">
+                    <label class="label" for="id"><span><?php /* @escapeNotVerified */ echo __('Id#') ?></span></label>
+                    <div class="control">
+                        <input name="data[id]" id="id" type="text" class="input-text" title="<?php /* @escapeNotVerified */ echo __('Id#') ?>" value="<?php echo $excellence_hello_test_id; ?>">
+                    </div>
+                </div>
+
+                <div class="field title required">
+                    <label class="label" for="title"><span><?php /* @escapeNotVerified */ echo __('Title') ?></span></label>
+                    <div class="control">
+                        <input name="data[title]" id="title" type="text" class="input-text" title="<?php /* @escapeNotVerified */ echo __('Title') ?>" data-validate="{required:true}" value="<?php echo $title; ?>">
+                    </div>
+                </div>
+
+                <div class="field status required">
+                    <label class="label" for="status"><span><?php /* @escapeNotVerified */ echo __('Status') ?></span></label>
+                    <div class="control">
+                        <select name="data[status]" id="status" class="input-text" title="<?php /* @escapeNotVerified */ echo __('Status') ?>">
+                            <option value="1" <?php echo $op1_select; ?> >Enabled</option>
+                            <option value="2" <?php echo $op2_select; ?> >Disabled</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="actions-toolbar">
+                    <div class="primary"><input type="submit" class="action login primary" name="data[submit]" id="send2" value="<?php /* @escapeNotVerified */ echo __('Save') ?>"></div>
+                    <div class="secondary"><a class="action remind" href="<?php echo $block->getListUrl(); ?>"><span><?php /* @escapeNotVerified */ echo __('Go back to list') ?></span></a></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
