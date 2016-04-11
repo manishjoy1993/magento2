@@ -22,4 +22,26 @@ class Test extends \Magento\Framework\Model\AbstractModel implements TestInterfa
         $id = $this->getResource()->loadByTitle($title);
         return $this->load($id);
     }
+    public function deleteById($id){
+        if($id){
+            return $this->load($id)->delete();
+        }
+    }
+    public function getDataById($id){
+        if($id){
+            return $this->load($id)->getData();
+        }
+    }
+    public function saveEdit($data){
+        $model = $this->load($data['id']);
+        $model->setTitle($data['title']);
+        $model->setStatus($data['status']);
+        return $model->save();
+    }
+    public function saveData($data){
+        if(isset($data['title'])){
+            return $this->setData($data)->save();
+        }
+        return;
+    }
 }

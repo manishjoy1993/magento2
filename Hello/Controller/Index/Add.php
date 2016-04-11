@@ -1,20 +1,27 @@
 <?php
-namespace Excellence\Hello\Controller\Hello;
+namespace Excellence\Hello\Controller\Index;
  
  
-class World extends \Magento\Framework\App\Action\Action
+class Add extends \Magento\Framework\App\Action\Action
 {
     protected $resultPageFactory;
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
+        \Excellence\Hello\Model\TestFactory $testFactory,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory)
     {
+        $this->_testFactory = $testFactory;
         $this->resultPageFactory = $resultPageFactory;       
         return parent::__construct($context);
     }
      
     public function execute()
     {
+        $test = $this->_testFactory->create();
+        $post = $this->getRequest()->getPost('data');
+        if(isset($post['submit'])) {
+            $test->saveData($post);
+        }
         return $this->resultPageFactory->create(); 
     } 
 }

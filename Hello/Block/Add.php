@@ -1,7 +1,7 @@
 <?php
 namespace Excellence\Hello\Block;
   
-class Main extends \Magento\Framework\View\Element\Template
+class Add extends \Magento\Framework\View\Element\Template
 {   
 	protected $_testFactory;
 
@@ -33,18 +33,8 @@ class Main extends \Magento\Framework\View\Element\Template
 		// $test->loadByTitle('First');
  		$this->setTestModel($collectionData);
     }
-    public function getDeleteUrl($id)
+    public function getListUrl()
     {
-        $deleteUrl = "excellence/index/delete/id/".$id;
-        return $this->_urlBuilder->getUrl($deleteUrl);
-    }
-    public function getEditUrl($id)
-    {
-        $editUrl = "excellence/index/edit/id/".$id;
-        return $this->_urlBuilder->getUrl($editUrl);
-    }
-    public function getAddUrl()
-    {
-        return $this->_urlBuilder->getUrl("excellence/index/add/");
+        return $this->_urlBuilder->getUrl("excellence/index/index/");
     }
 }
